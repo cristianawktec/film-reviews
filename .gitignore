@@ -6,3 +6,12 @@ db.sqlite3
 /static/
 /media/
 venv36/
+.env
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+*.sqlite3
+venv/
+.env.*

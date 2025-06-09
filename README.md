@@ -6,7 +6,26 @@ Sistema simples desenvolvido com Django para cadastro, listagem e visualização
 ![img_1.png](img_1.png)
 
 ---
+# Projeto: Análise de Sentimento com IA Generativa + Busca Semântica com FAISS
 
+Este projeto demonstra como integrar o modelo GPT-3.5 da OpenAI com FAISS para análise de sentimento e busca semântica de críticas de filmes.
+
+## Tecnologias
+- **Linguagem**: Python 3.10
+- **Backend**: FastAPI
+- **IA Generativa**: OpenAI GPT-3.5
+- **Busca Vetorial**: FAISS + OpenAIEmbeddings
+
+## Estrutura
+- `app.py`: Roteamento básico com FastAPI
+- `gpt_analysis.py`: Funções para comunicação com a API OpenAI
+- `faiss_search.py`: Geração de embeddings e busca vetorial
+- `data/reviews_sample.json`: Dataset de exemplo
+
+## Como rodar
+```bash
+pip install -r requirements.txt
+uvicorn app:app --reload
 ## 📌 Funcionalidades
 
 - Listagem de filmes publicados com imagem e nota
