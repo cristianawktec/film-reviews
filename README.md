@@ -49,7 +49,7 @@ uvicorn app:app --reload
 ## 📁 Estrutura do Projeto
 
 film_review/
-│
+├── data/
 ├── reviews/ # App principal
 │ ├── migrations/ # Migrations do Django
 │ ├── static/ # Arquivos estáticos (CSS, JS, Imagens)
