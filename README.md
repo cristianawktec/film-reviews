@@ -23,6 +23,10 @@ Interface moderna baseada em AdminLTE + Bootstrap
 💡 Demonstração prática de GenAI
 Este projeto integra IA Generativa no fluxo de criação de conteúdo:
 
+logar como:
+admin
+admin
+
 # Exemplo de payload enviado para a IA
 data = {
     "model": "openai/gpt-3.5-turbo",
