@@ -1,0 +1,36 @@
+from django.template.response import TemplateResponse
+
+class ReviewAdmin(admin.ModelAdmin):
+    form = ReviewAdminForm
+
+    def get_urls(self):
+        urls = super().get_urls()
+        custom_urls = [
+            path('generate-review/', self.admin_site.admin_view(self.generate_review))
+        ]
+        return custom_urls + urls
+
+    def render_change_form(self, request, context, *args, **kwargs):
+        return TemplateResponse(
+            request,
+            "reviews/templates/admin/review_change_form.html",  # caminho exato que você quer manter
+            context
+        )
+
+    def generate_review(self, request):
+        title = request.GET.get("title", "")
+        if not title:
+            return JsonResponse({"error": "Title is required"}, status=400)
+
+        prompt = f"Escreva uma crítica de filme bem elaborada e criativa sobre o filme '{title}' em português."
+        try:
+            response = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=[{"role": "user", "content": prompt}],
+                temperature=0.7,
+                max_tokens=500
+            )
+            content = response['choices'][0]['message']['content']
+            return JsonResponse({"body": content})
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=500)

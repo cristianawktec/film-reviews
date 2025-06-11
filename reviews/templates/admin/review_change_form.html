@@ -1,0 +1,38 @@
+{% extends "admin/change_form.html" %}
+{% load static %}
+
+{% block extrahead %}
+  {{ block.super }}
+  <script>
+    function generateReview() {
+      const title = document.getElementById("id_title").value;
+      if (!title) {
+        alert("Informe um título antes de gerar o texto.");
+        return;
+      }
+      fetch(`generate-review/?title=${encodeURIComponent(title)}`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.body) {
+            document.getElementById("id_body").value = data.body;
+          } else {
+            alert("Erro: " + data.error);
+          }
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const bodyField = document.getElementById("id_body");
+      if (bodyField) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "button";
+        button.innerText = "✨ Gerar review com IA";
+        button.style.marginTop = "10px";
+        button.style.marginBottom = "10px";
+        button.onclick = generateReview;
+        bodyField.parentNode.insertBefore(button, bodyField.nextSibling);
+      }
+    });
+  </script>
+{% endblock %}

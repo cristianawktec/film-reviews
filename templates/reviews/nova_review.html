@@ -1,0 +1,75 @@
+{% extends "reviews/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header bg-primary text-white">
+      <h3 class="card-title">Nova Review</h3>
+    </div>
+    <div class="card-body">
+
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="form-group">
+          <label for="id_title">Título:</label>
+          {{ form.title }}
+        </div>
+
+        <div class="form-group">
+          <label for="id_image">Imagem:</label>
+          {{ form.image }}
+        </div>
+
+        <div class="form-group">
+          <label for="id_content">Content:</label>
+          {{ form.content }}
+        </div>
+
+        <div class="form-group">
+          <label for="id_body">Body:</label>
+          {{ form.body }}
+        </div>
+
+        <div class="form-group">
+          <button type="button" class="btn btn-warning mb-3" onclick="generateReview()">✨ Gerar com IA</button>
+        </div>
+
+        <div class="form-group">
+          <label for="id_status">Status:</label>
+          {{ form.status }}
+        </div>
+
+        <div class="form-group">
+          <label for="id_rating">Rating:</label>
+          {{ form.rating }}
+        </div>
+
+        <button type="submit" class="btn btn-success">Salvar Review</button>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  function generateReview() {
+    const title = document.getElementById("id_title").value;
+    if (!title) {
+      alert("Informe um título antes de gerar o texto.");
+      return;
+    }
+
+    fetch(`/reviews/gerar-review/?title=${encodeURIComponent(title)}`)
+      .then(response => response.json())
+      .then(data => {
+        if (data.body) {
+          document.getElementById("id_body").value = data.body;
+        } else {
+          alert("Erro: " + data.error);
+        }
+      });
+  }
+</script>
+{% endblock %}

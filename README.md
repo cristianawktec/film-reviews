@@ -1,131 +1,107 @@
-# 🎬 Film Reviews
+🎬 Film Reviews + IA Generativa
+Sistema completo em Django para cadastro, listagem, geração e gerenciamento de resenhas de filmes — com integração de IA Generativa (GenAI) via OpenRouter/OpenAI.
 
-Sistema simples desenvolvido com Django para cadastro, listagem e visualização de resenhas de filmes. Os usuários podem ver detalhes como título, autor, imagem, nota e descrição de cada filme publicado.
+![img_2.png](img_2.png)
+![img_3.png](img_3.png)
+![img_4.png](img_4.png)
+![img_5.png](img_5.png)
 
-![img.png](img.png)![screenshot](static/img/screenshot.png)
-![img_1.png](img_1.png)
+🚀 Melhorias com IA implementadas
+Geração automática de reviews com IA Generativa (GPT-3.5 via OpenRouter)
 
----
-# Projeto: Análise de Sentimento com IA Generativa + Busca Semântica com FAISS
+Integração com API segura usando variável .env
 
-Este projeto demonstra como integrar o modelo GPT-3.5 da OpenAI com FAISS para análise de sentimento e busca semântica de críticas de filmes.
+Botão de IA no formulário de criação de review no Django Admin e interface personalizada
 
-## Tecnologias
-- **Linguagem**: Python 3.10
-- **Backend**: FastAPI
-- **IA Generativa**: OpenAI GPT-3.5
-- **Busca Vetorial**: FAISS + OpenAIEmbeddings
+Interface de gerenciamento com funcionalidades de edição e exclusão de reviews
 
-## Estrutura
-- `app.py`: Roteamento básico com FastAPI
-- `gpt_analysis.py`: Funções para comunicação com a API OpenAI
-- `faiss_search.py`: Geração de embeddings e busca vetorial
-- `data/reviews_sample.json`: Dataset de exemplo
+Suporte completo a upload e exibição de imagens dos filmes
 
-## Como rodar
-```bash
-pip install -r requirements.txt
-uvicorn app:app --reload
-## 📌 Funcionalidades
+Interface moderna baseada em AdminLTE + Bootstrap
 
-- Listagem de filmes publicados com imagem e nota
-- Visualização detalhada do review
-- Cadastro via painel admin do Django
-- Upload de imagem do filme
-- Responsivo e com layout baseado no AdminLTE
+💡 Demonstração prática de GenAI
+Este projeto integra IA Generativa no fluxo de criação de conteúdo:
 
----
+# Exemplo de payload enviado para a IA
+data = {
+    "model": "openai/gpt-3.5-turbo",
+    "messages": [
+        {"role": "user", "content": f"Escreva uma crítica sobre o filme '{title}'"}
+    ]
+}
 
-## 🧰 Tecnologias utilizadas
+A IA responde com uma resenha que é automaticamente preenchida no formulário, otimizando a criação de conteúdo com criatividade assistida.
 
-- [Python 3.12](https://www.python.org/)
-- [Django 5.2](https://www.djangoproject.com/)
-- [Bootstrap 4](https://getbootstrap.com/)
-- [AdminLTE 3](https://adminlte.io/)
-- [SQLite 3 (banco de dados local)]
 
----
+🧪 Tecnologias utilizadas
+Backend: Django 5.2
 
-## 📁 Estrutura do Projeto
+Linguagem: Python 3.12
 
+IA Generativa: OpenAI via OpenRouter API
+
+Frontend: AdminLTE 3, Bootstrap 4
+
+Banco de Dados: SQLite 3
+
+Infraestrutura Local: Simulando ambiente de produção com restrições reais de hospedagem
+
+📋 Funcionalidades
+Página de listagem pública de reviews com imagem, nota e título
+
+Página detalhada de cada review
+
+Cadastro via painel personalizado
+
+Geração automática de texto com IA
+
+Upload de imagens dos filmes
+
+Página de gerenciamento com tabela de edição e exclusão
+
+Autenticação via Django
+
+Templates reaproveitáveis com herança HTML (base.html)
+
+
+
+📁 Estrutura do Projeto
 film_review/
-├── data/
-├── reviews/ # App principal
-│ ├── migrations/ # Migrations do Django
-│ ├── static/ # Arquivos estáticos (CSS, JS, Imagens)
-│ │ ├── css/
-│ │ └── img/
-│ ├── templates/
-│ │ └── reviews/
-│ │ ├── base.html
-│ │ ├── list.html
-│ │ └── detail.html
-│ ├── admin.py
-│ ├── models.py
-│ ├── views.py
-│ ├── urls.py
-│ └── ...
-├── film_review/ # Configurações do projeto
-│ ├── settings.py
-│ ├── urls.py
-│ └── ...
-└── db.sqlite3 # Banco de dados local
+├── reviews/
+│   ├── templates/reviews/
+│   │   ├── base.html
+│   │   ├── list.html
+│   │   ├── detail.html
+│   │   ├── nova_review.html
+│   │   └── gerenciar.html
+│   ├── views.py
+│   ├── urls.py
+│   ├── models.py
+│   ├── forms.py
+├── film_review/
+│   ├── settings.py
+│   └── urls.py
+├── static/
+│   └── img/
+├── media/
+└── db.sqlite3
 
 
----
-
-## 🚀 Como rodar localmente
-
-### 1. Clone o projeto
-
-```bash
-git clone https://github.com/seu-usuario/film-reviews.git
+🧰 Setup local
+git clone https://github.com/cristianawktec/film-reviews.git
 cd film-reviews
 
-
-2. Crie um ambiente virtual e ative
 python -m venv venv
 source venv/bin/activate  # Linux/Mac
 venv\Scripts\activate     # Windows
 
-
-3. Instale as dependências
-pip install django
-
-4. Rode as migrações
+pip install -r requirements.txt
 python manage.py migrate
-
-5. Crie um superusuário (para acessar o admin)
 python manage.py createsuperuser
-
-6. Inicie o servidor
 python manage.py runserver
-Acesse: http://127.0.0.1:8000/reviews/
 
-🖼️ Upload de Imagens
-O modelo Review possui um campo de imagem:
 
-image = models.ImageField(upload_to='reviews_images/', blank=True, null=True)
-Certifique-se de ter:
+🧠 Sobre mim 
+Este projeto foi desenvolvido mim Cristian, com o objetivo de demonstrar, na prática, a aplicação de GenAI em fluxos reais de CRUD, com foco em usabilidade, integração segura e reaproveitamento de componentes.
 
-A pasta media/ criada na raiz
-
-Configurações no settings.py:
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
-
-E no urls.py principal:
-
-from django.conf import settings
-from django.conf.urls.static import static
-
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-✍️ Como contribuir
-Faça um fork
-Crie uma branch: git checkout -b minha-feature
-Faça commits: git commit -m 'Minha feature'
-Envie sua branch: git push origin minha-feature
-
-📄 Licença
-MIT © Seu Nome
+Estou em transição para projetos com foco em IA Generativa, com pós-graduação em Inteligência Artificial e vivência com DevOps, Django, Docker e AWS.
