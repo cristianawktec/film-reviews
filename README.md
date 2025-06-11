@@ -1,7 +1,7 @@
 🎬 Film Reviews + IA Generativa
 Sistema completo em Django para cadastro, listagem, geração e gerenciamento de resenhas de filmes — com integração de IA Generativa (GenAI) via OpenRouter/OpenAI.
 
-![img_2.png](img_2.png)
+![img_6.png](img_6.png)
 ![img_3.png](img_3.png)
 ![img_4.png](img_4.png)
 ![img_5.png](img_5.png)
